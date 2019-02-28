@@ -9,17 +9,18 @@ CTiledDivisionScheme::CTiledDivisionScheme(float InWidth, float InHeight) :
 
 
 //=======================================================================================================================
-TiledDivisionScheme::~TiledDivisionScheme()
+CTiledDivisionScheme::~CTiledDivisionScheme()
 {
 }
 
 //=======================================================================================================================
 int CTiledDivisionScheme::Quantize(const ofVec2f& InPosition) const
 {
+	return 0;
 }
 
 //=======================================================================================================================
 ofVec2f CTiledDivisionScheme::Localize(int InNode) const
 {
-
+	return ofVec2f::zero();
 }

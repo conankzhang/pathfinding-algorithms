@@ -164,6 +164,7 @@
     <ClCompile Include="src\Pathfinding\Pathfinding.cpp" />
     <ClCompile Include="src\Pathfinding\Heuristic.cpp" />
     <ClCompile Include="src\Pathfinding\DivisionScheme.cpp" />
+    <ClCompile Include="src\Pathfinding\TiledDivisionScheme.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -757,6 +758,7 @@
     <ClInclude Include="src\Pathfinding\Pathfinding.h" />
     <ClInclude Include="src\Pathfinding\Heuristic.h" />
     <ClInclude Include="src\Pathfinding\DivisionScheme.h" />
+    <ClInclude Include="src\Pathfinding\TiledDivisionScheme.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
