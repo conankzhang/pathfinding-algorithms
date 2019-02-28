@@ -28,5 +28,5 @@ public:
 	CPathfinding();
 	~CPathfinding();
 
-	bool FindPath(int StartNode, int GoalNode, CDirectedWeightedGraph* Graph, CHeuristic* Heuristic, std::vector<CDirectedWeightedEdge*>& OutPath);
+	bool FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::vector<CDirectedWeightedEdge*>& OutPath) const;
 };

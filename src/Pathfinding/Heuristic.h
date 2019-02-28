@@ -4,19 +4,19 @@
 class CHeuristic
 {
 public:
-	virtual float GetEstimate(int InNode) = 0;
+	virtual float GetEstimate(int InNode) const = 0;
 };
 
 //=======================================================================================================================
 class CZeroHeuristic : public CHeuristic
 {
 public:
-	virtual float GetEstimate(int InNode) override;
+	virtual float GetEstimate(int InNode) const override;
 };
 
 //=======================================================================================================================
 class CEuclideanHeuristic : public CHeuristic
 {
 public:
-	virtual float GetEstimate(int InNode) override;
+	virtual float GetEstimate(int InNode) const override;
 };

@@ -9,9 +9,9 @@ class CDirectedWeightedEdge;
 class DivisionScheme
 {
 public:
-	virtual int Quantize(ofVec2f InPosition) = 0;
-	virtual ofVec2f Localize(int InNode) = 0;
+	virtual int Quantize(const ofVec2f& InPosition) const = 0;
+	virtual ofVec2f Localize(int InNode) const = 0;
 
-	bool GetWaypointPath(const std::vector<CDirectedWeightedEdge*>& Path, std::vector<ofVec2f>& OutWaypoints);
+	bool GetWaypointPath(const std::vector<CDirectedWeightedEdge*>& Path, std::vector<ofVec2f>& OutWaypoints) const;
 };
 

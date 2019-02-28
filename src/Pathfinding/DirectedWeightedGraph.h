@@ -7,10 +7,10 @@ class CDirectedWeightedEdge
 {
 
 public:
-	inline float GetCost() { return Cost; }
+	inline float GetCost() const { return Cost; }
 
-	inline int GetSource() { return Source; }
-	inline int GetSink() { return Sink; }
+	inline int GetSource() const { return Source; }
+	inline int GetSink() const { return Sink; }
 
 private:
 	float Cost;
@@ -26,7 +26,7 @@ public:
 	CDirectedWeightedGraph();
 	~CDirectedWeightedGraph();
 
-	bool GetOutgoingEdges(int InNode, std::vector<CDirectedWeightedEdge*>& OutOutgoingEdges);
+	bool GetOutgoingEdges(int InNode, std::vector<CDirectedWeightedEdge*>& OutOutgoingEdges) const;
 
 private:
 	std::vector<CDirectedWeightedEdge> Edges;
