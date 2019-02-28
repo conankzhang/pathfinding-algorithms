@@ -1,5 +1,7 @@
 #pragma once
 
+#include <map>
+
 class CDivisionScheme;
 
 //=======================================================================================================================
@@ -20,10 +22,16 @@ public:
 };
 
 //=======================================================================================================================
-class CManhattanDistance : public CHeuristic
+class CPalletMapping : public CHeuristic
 {
 public:
+	CPalletMapping();
+	~CPalletMapping();
+
 	virtual float GetEstimate(int CurrentNode, int GoalNode) const override;
+
+private:
+	std::map<int, float> NodeMapping;
 };
 
 //=======================================================================================================================

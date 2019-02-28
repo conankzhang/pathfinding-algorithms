@@ -9,19 +9,9 @@ float CZeroEstimate::GetEstimate(int CurrentNode, int GoalNode) const
 }
 
 //=======================================================================================================================
-float CManhattanDistance::GetEstimate(int CurrentNode, int GoalNode) const
+float CRandomEstimate::GetEstimate(int CurrentNode, int GoalNode) const
 {
-	if (!DivisionScheme)
-	{
-		return 0;
-	}
-
-	ofVec2f CurrentPosition = DivisionScheme->Localize(CurrentNode);
-	ofVec2f GoalPosition = DivisionScheme->Localize(GoalNode);
-
-	ofVec2f Hypotenuse = CurrentPosition - GoalPosition;
-
-	return abs(Hypotenuse.x) + abs(Hypotenuse.y);
+	return static_cast<float>(rand()) / (static_cast<float>(RAND_MAX/16));
 }
 
 //=======================================================================================================================

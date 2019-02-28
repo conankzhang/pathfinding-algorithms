@@ -29,7 +29,7 @@ void ofApp::setup()
 	Heuristic = new CZeroEstimate();
 
 	std::vector<const CDirectedWeightedEdge*> Path;
-	Pathfinding::FindPath(9, 4, Graph, Heuristic, Path);
+	Pathfinding::FindPath(3, 7, Graph, Heuristic, Path);
 
 	bool b = true;
 }
