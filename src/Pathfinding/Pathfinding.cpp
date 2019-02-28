@@ -6,7 +6,7 @@
 #include <queue>
 
 //=======================================================================================================================
-SNodeRecord::SNodeRecord() :
+Pathfinding::SNodeRecord::SNodeRecord() :
 	Node(-1),
 	IncomingEdge(nullptr),
 	CostSoFar(-1),
@@ -16,7 +16,7 @@ SNodeRecord::SNodeRecord() :
 }
 
 //=======================================================================================================================
-SNodeRecord::SNodeRecord(int InNode, const CDirectedWeightedEdge* InEdge, float InCost, float InEstimatedCost) :
+Pathfinding::SNodeRecord::SNodeRecord(int InNode, const CDirectedWeightedEdge* InEdge, float InCost, float InEstimatedCost) :
 	Node(InNode),
 	IncomingEdge(InEdge),
 	CostSoFar(InCost),
@@ -26,7 +26,7 @@ SNodeRecord::SNodeRecord(int InNode, const CDirectedWeightedEdge* InEdge, float 
 }
 
 //=======================================================================================================================
-bool CPathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::vector<const CDirectedWeightedEdge*>& OutPath)
+bool Pathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::vector<const CDirectedWeightedEdge*>& OutPath)
 {
 	if (!Heuristic || !Graph)
 	{

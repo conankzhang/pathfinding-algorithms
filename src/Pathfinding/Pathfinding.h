@@ -8,22 +8,20 @@ class CDirectedWeightedGraph;
 class CHeuristic;
 
 //=======================================================================================================================
-struct SNodeRecord
+namespace Pathfinding
 {
-	SNodeRecord();
-	SNodeRecord(int InNode, const CDirectedWeightedEdge* InEdge, float InCost, float InEstimatedCost);
+	struct SNodeRecord
+	{
+		SNodeRecord();
+		SNodeRecord(int InNode, const CDirectedWeightedEdge* InEdge, float InCost, float InEstimatedCost);
 
-	int Node;
+		int Node;
 
-	const CDirectedWeightedEdge* IncomingEdge;
+		const CDirectedWeightedEdge* IncomingEdge;
 
-	float CostSoFar;
-	float EstimatedTotalCost;
-};
+		float CostSoFar;
+		float EstimatedTotalCost;
+	};
 
-//=======================================================================================================================
-class CPathfinding
-{
-public:
 	static bool FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::vector<const CDirectedWeightedEdge*>& OutPath);
 };
