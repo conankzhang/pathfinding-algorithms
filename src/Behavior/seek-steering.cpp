@@ -3,6 +3,16 @@
 #include "../Entity/Boid.h"
 
 //=======================================================================================================================
+cseek_steering::cseek_steering() :
+	Target(ofVec2f::zero()),
+	TargetRadius(10.0f),
+	SlowRadius(100.0f),
+	TimeToTarget(5.0f)
+{
+
+}
+
+//=======================================================================================================================
 cseek_steering::cseek_steering(const ofVec2f& InTarget) :
 	Target(InTarget),
 	TargetRadius(10.0f),

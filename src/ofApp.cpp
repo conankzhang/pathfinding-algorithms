@@ -7,6 +7,7 @@
 #include "Behavior/DynamicFace.h"
 #include "Behavior/wander-steering.h"
 #include "Behavior/DynamicSeparation.h"
+#include "Behavior/DynamicPathFollow.h"
 
 #include "Pathfinding/DirectedWeightedGraph.h"
 #include "Pathfinding/Pathfinding.h"
@@ -25,7 +26,7 @@ void ofApp::setup()
 	TargetSize = 10.0f;
 
 	Flock = new CFlock(1, FlockBehaviors, ofColor::black);
-	FlockBehaviors.push_back(SWeightedBehavior(new cseek_steering(Target), 1));
+	FlockBehaviors.push_back(SWeightedBehavior(new CDynamicPathFollow(), 1));
 	FlockBehaviors.push_back(SWeightedBehavior(new CDynamicLookWhereYouAreGoing(), 1));
 
 	Graph = new CDirectedWeightedGraph(EGraph::PALLET, ofGetWindowWidth(), ofGetWindowHeight(), 10, 10);
