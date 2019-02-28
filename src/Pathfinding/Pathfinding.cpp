@@ -26,17 +26,7 @@ SNodeRecord::SNodeRecord(int InNode, const CDirectedWeightedEdge* InEdge, float 
 }
 
 //=======================================================================================================================
-CPathfinding::CPathfinding()
-{
-}
-
-//=======================================================================================================================
-CPathfinding::~CPathfinding()
-{
-}
-
-//=======================================================================================================================
-bool CPathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::vector<const CDirectedWeightedEdge*>& OutPath) const
+bool CPathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::vector<const CDirectedWeightedEdge*>& OutPath)
 {
 	if (!Heuristic || !Graph)
 	{

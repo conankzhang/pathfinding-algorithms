@@ -25,8 +25,5 @@ struct SNodeRecord
 class CPathfinding
 {
 public:
-	CPathfinding();
-	~CPathfinding();
-
-	bool FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::vector<const CDirectedWeightedEdge*>& OutPath) const;
+	static bool FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::vector<const CDirectedWeightedEdge*>& OutPath);
 };
