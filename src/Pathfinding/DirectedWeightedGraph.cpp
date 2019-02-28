@@ -153,5 +153,38 @@ void CDirectedWeightedGraph::CreatePalletGraph()
 //=======================================================================================================================
 void CDirectedWeightedGraph::GenerateTiledGraph()
 {
+	int Length = 1000;
+	Edges.reserve(Length * Length);
 
+	for (int Row = 0; Row < Length; Row++)
+	{
+		for (int Column = 0; Column < Length; Column++)
+		{
+			int CurrentNode = (Row * Length) + Column;
+
+			if (Row > 0)
+			{
+				CDirectedWeightedEdge NorthEdge(1, CurrentNode, CurrentNode - Length);
+				Edges.push_back(NorthEdge);
+			}
+
+			if (Column < Length - 1)
+			{
+				CDirectedWeightedEdge EastEdge(1, CurrentNode, CurrentNode + 1);
+				Edges.push_back(EastEdge);
+			}
+
+			if (Row < Length - 1)
+			{
+				CDirectedWeightedEdge SouthEdge(1, CurrentNode, CurrentNode + Length);
+				Edges.push_back(SouthEdge);
+			}
+
+			if (Column > 0)
+			{
+				CDirectedWeightedEdge WestEdge(1, CurrentNode, CurrentNode - 1);
+				Edges.push_back(WestEdge);
+			}
+		}
+	}
 }

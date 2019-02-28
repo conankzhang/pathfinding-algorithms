@@ -23,7 +23,7 @@ void ofApp::setup()
 
 	TargetSize = 10.0f;
 
-	Graph = new CDirectedWeightedGraph(EGraph::PALLET);
+	Graph = new CDirectedWeightedGraph(EGraph::TILED);
 }
 
 //=======================================================================================================================
