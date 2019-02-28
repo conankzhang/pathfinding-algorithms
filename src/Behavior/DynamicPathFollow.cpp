@@ -9,7 +9,7 @@
 //=======================================================================================================================
 CDynamicPathFollow::CDynamicPathFollow(std::queue<const CDirectedWeightedEdge*>& InPath, CDivisionScheme* InDivisionScheme) :
 	Path(InPath),
-	TargetRadius(10.0f),
+	TargetRadius(50.0f),
 	DivisionScheme(InDivisionScheme)
 
 {

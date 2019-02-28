@@ -169,7 +169,7 @@ void CDirectedWeightedGraph::GenerateTiledGraph()
 	{
 		for (int Column = 0; Column < GraphWidth; Column++)
 		{
-			int CurrentNode = (Row * GraphHeight) + Column;
+			int CurrentNode = (Row * GraphWidth) + Column;
 
 			if (Row > 0)
 			{

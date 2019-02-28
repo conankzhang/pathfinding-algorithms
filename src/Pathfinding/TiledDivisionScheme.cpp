@@ -22,8 +22,8 @@ CTiledDivisionScheme::~CTiledDivisionScheme()
 //=======================================================================================================================
 int CTiledDivisionScheme::Quantize(const ofVec2f& InPosition) const
 {
-	int Row = floor(InPosition.x / TileWidth);
-	int Column = floor(InPosition.y / TileHeight);
+	int Column = floor(InPosition.x / TileWidth);
+	int Row = floor(InPosition.y / TileHeight);
 
 	int CurrentNode = (Row * GraphHeight) + Column;
 
