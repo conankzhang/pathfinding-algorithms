@@ -208,8 +208,8 @@ float CDirectedWeightedGraph::CalculateCost(int Row, int Column)
 {
 	ofVec2f Position;
 
-	Position.x = Column * TileWidth;
-	Position.y = Row * TileHeight;
+	Position.x = Column * TileWidth + (TileWidth / 2);
+	Position.y = Row * TileHeight + (TileHeight / 2);
 
 	for (auto Obstacle : Obstacles)
 	{

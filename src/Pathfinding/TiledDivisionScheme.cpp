@@ -38,8 +38,8 @@ ofVec2f CTiledDivisionScheme::Localize(int InNode) const
 
 	ofVec2f Position;
 
-	Position.x = Column * TileWidth;
-	Position.y = Row * TileHeight;
+	Position.x = Column * TileWidth + (TileWidth / 2);
+	Position.y = Row * TileHeight + (TileWidth / 2);
 
 	return Position;
 }

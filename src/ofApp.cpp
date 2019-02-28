@@ -28,7 +28,7 @@ void ofApp::setup()
 
 	TargetSize = 10.0f;
 
-	Graph = new CDirectedWeightedGraph(EGraph::TILED, ofGetWindowWidth(), ofGetWindowHeight(), 100, 100);
+	Graph = new CDirectedWeightedGraph(EGraph::TILED, ofGetWindowWidth(), ofGetWindowHeight(), 100, 100, Obstacles);
 	DivisionScheme = new CTiledDivisionScheme(ofGetWindowWidth(), ofGetWindowHeight(), 100.0f, 100.0f, Graph);
 	Heuristic = new CZeroEstimate(DivisionScheme);
 
@@ -78,8 +78,19 @@ void ofApp::keyPressed(int key)
 //=======================================================================================================================
 void ofApp::mousePressed(int x, int y, int button)
 {
-	Target.x = x;
-	Target.y = y;
+	ofVec2f ClickPosition;
+	ClickPosition.x = x;
+	ClickPosition.y = y;
+
+	for (auto Obstacle : Obstacles)
+	{
+		if (Obstacle->IsInObstacle(ClickPosition))
+		{
+			return;
+		}
+	}
+
+	Target = ClickPosition;
 
 	if (DivisionScheme && Flock)
 	{

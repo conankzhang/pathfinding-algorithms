@@ -50,7 +50,7 @@ private:
 
 private:
 	std::vector<CDirectedWeightedEdge> Edges;
-	const std::vector<CObstacle*>& Obstacles;
+	const std::vector<CObstacle*>& Obstacles = std::vector<CObstacle *>();
 
 	int ScreenWidth;
 	int ScreenHeight;

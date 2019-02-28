@@ -27,5 +27,8 @@ void CObstacle::Draw()
 //=======================================================================================================================
 bool CObstacle::IsInObstacle(const ofVec2f& InPosition)
 {
-	return false;
+	bool InHorizontally = InPosition.x < XPosition + Width && InPosition.x > XPosition;
+	bool InVertically = InPosition.y < YPosition + Height && InPosition.y > YPosition;
+
+	return InHorizontally && InVertically;
 }
