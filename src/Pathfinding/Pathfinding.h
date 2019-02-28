@@ -1,23 +1,32 @@
 #pragma once
 
-#include "DirectedWeightedGraph.h"
-
 #include <vector>
 
+class CDirectedWeightedEdge;
+class CDirectedWeightedGraph;
 
-class CHeuristic
+class CHeuristic;
+
+//=======================================================================================================================
+struct SNodeRecord
 {
-public:
-	float GetEstimate(int InNode);
+	SNodeRecord();
+	SNodeRecord(int InNode, CDirectedWeightedEdge* InEdge, float InCost, float InEstimatedCost);
+
+	int Node;
+
+	CDirectedWeightedEdge* IncomingEdge;
+
+	float CostSoFar;
+	float EstimatedTotalCost;
 };
 
-
+//=======================================================================================================================
 class CPathfinding
 {
 public:
 	CPathfinding();
 	~CPathfinding();
 
-	std::vector<CDirectedWeightedEdge> FindPath(int StartNode, int GoalNode, CDirectedWeightedGraph* Graph, CHeuristic* Heuristic);
+	bool FindPath(int StartNode, int GoalNode, CDirectedWeightedGraph* Graph, CHeuristic* Heuristic, std::vector<CDirectedWeightedEdge*>& OutPath);
 };
-

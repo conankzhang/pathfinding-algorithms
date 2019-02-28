@@ -184,6 +184,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Pathfinding\Heuristic.cpp" />
     <ClCompile Include="src\Pathfinding\Pathfinding.cpp" />
     <ClCompile Include="src\Pathfinding\DirectedWeightedGraph.cpp" />
     <ClCompile Include="src\Behavior\basic-motion.cpp" />
@@ -241,6 +242,7 @@
     <ClCompile Include="..\..\..\addons\ofxXmlSettings\libs\tinyxmlparser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Pathfinding\Heuristic.h" />
     <ClInclude Include="src\Pathfinding\Pathfinding.h" />
     <ClInclude Include="src\Pathfinding\DirectedWeightedGraph.h" />
     <ClInclude Include="src\Behavior\basic-motion.h" />
