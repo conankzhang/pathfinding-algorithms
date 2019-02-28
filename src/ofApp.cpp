@@ -26,8 +26,8 @@ void ofApp::setup()
 
 	TargetSize = 10.0f;
 
-	Graph = new CDirectedWeightedGraph(EGraph::PALLET);
-	Heuristic = new CZeroEstimate(new CTiledDivisionScheme(10.0f, 10.0f));
+	Graph = new CDirectedWeightedGraph(EGraph::PALLET, ofGetWindowWidth(), ofGetWindowHeight(), 10, 10);
+	Heuristic = new CZeroEstimate(new CTiledDivisionScheme(10.0f, 10.0f, Graph));
 
 	std::vector<const CDirectedWeightedEdge*> Path;
 	Pathfinding::FindPath(3, 7, Graph, Heuristic, Path);

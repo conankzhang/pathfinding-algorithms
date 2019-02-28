@@ -1,12 +1,14 @@
 #include "TiledDivisionScheme.h"
 
+#include "DirectedWeightedGraph.h"
+
 //=======================================================================================================================
-CTiledDivisionScheme::CTiledDivisionScheme(float InWidth, float InHeight) :
+CTiledDivisionScheme::CTiledDivisionScheme(float InWidth, float InHeight, CDirectedWeightedGraph* InGraph) :
 	Width(InWidth),
-	Height(InHeight)
+	Height(InHeight),
+	Graph(InGraph)
 {
 }
-
 
 //=======================================================================================================================
 CTiledDivisionScheme::~CTiledDivisionScheme()
@@ -16,7 +18,12 @@ CTiledDivisionScheme::~CTiledDivisionScheme()
 //=======================================================================================================================
 int CTiledDivisionScheme::Quantize(const ofVec2f& InPosition) const
 {
-	return 0;
+	if (!Graph)
+	{
+		return 0;
+	}
+
+	return Graph->GetNodeAt(floor(InPosition.y / Width), floor(InPosition.x / Height));
 }
 
 //=======================================================================================================================

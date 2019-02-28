@@ -2,11 +2,13 @@
 
 #include "DivisionScheme.h"
 
+class CDirectedWeightedGraph;
+
 //=======================================================================================================================
 class CTiledDivisionScheme : public CDivisionScheme
 {
 public:
-	CTiledDivisionScheme(float InWidth, float InHeight);
+	CTiledDivisionScheme(float InWidth, float InHeight, CDirectedWeightedGraph* InGraph);
 	~CTiledDivisionScheme();
 
 	virtual int Quantize(const ofVec2f& InPosition) const override;
@@ -15,5 +17,7 @@ public:
 private:
 	float Width;
 	float Height;
+
+	CDirectedWeightedGraph* Graph;
 };
 
