@@ -160,6 +160,7 @@
     <ClCompile Include="src\Entity\Kinematic.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Pathfinding\DirectedWeightedGraph.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -749,6 +750,7 @@
     <ClInclude Include="src\Entity\Kinematic.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\Pathfinding\DirectedWeightedGraph.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
