@@ -72,6 +72,16 @@ bool Pathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedG
 					float EstimatedCost = Heuristic->GetEstimate(EndNode, GoalNode);
 
 					SNodeRecord* EndNodeRecord;
+					if (ClosedList.count(EndNode) > 0)
+					{
+						EndNodeRecord = ClosedList.at(EndNode);
+						if (EndNodeRecord->CostSoFar <= CostSoFar)
+						{
+							continue;
+						}
+						ClosedList.erase(EndNode);
+					}
+
 					if (OpenNodes.count(EndNode) > 0)
 					{
 						EndNodeRecord = OpenNodes.at(EndNode);
@@ -83,7 +93,7 @@ bool Pathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedG
 						EndNodeRecord->CostSoFar = CostSoFar;
 						EndNodeRecord->EstimatedTotalCost = CostSoFar + EstimatedCost;
 
-
+						// Update priority queue hack
 						SNodeRecord* UpdateNodeRecord = new SNodeRecord(-1, nullptr, -1, -1);
 						OpenList.push(UpdateNodeRecord);
 						OpenList.pop();
@@ -91,6 +101,10 @@ bool Pathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedG
 					else
 					{
 						EndNodeRecord = new SNodeRecord(EndNode, Edge, CostSoFar, CostSoFar + EstimatedCost);
+						if (EndNodeRecord->EstimatedTotalCost >= 100000)
+						{
+							continue;
+						}
 						OpenList.push(EndNodeRecord);
 						OpenNodes.insert({ EndNodeRecord->Node, EndNodeRecord});
 					}
