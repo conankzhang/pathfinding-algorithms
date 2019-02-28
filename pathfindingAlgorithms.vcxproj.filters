@@ -163,6 +163,7 @@
     <ClCompile Include="src\Pathfinding\DirectedWeightedGraph.cpp" />
     <ClCompile Include="src\Pathfinding\Pathfinding.cpp" />
     <ClCompile Include="src\Pathfinding\Heuristic.cpp" />
+    <ClCompile Include="src\Pathfinding\DivisionScheme.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -755,6 +756,7 @@
     <ClInclude Include="src\Pathfinding\DirectedWeightedGraph.h" />
     <ClInclude Include="src\Pathfinding\Pathfinding.h" />
     <ClInclude Include="src\Pathfinding\Heuristic.h" />
+    <ClInclude Include="src\Pathfinding\DivisionScheme.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
