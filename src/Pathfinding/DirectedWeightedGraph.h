@@ -3,7 +3,7 @@
 #include <vector>
 
 //=======================================================================================================================
-class DirectedWeightedEdge
+class CDirectedWeightedEdge
 {
 
 public:
@@ -21,26 +21,26 @@ private:
 };
 
 //=======================================================================================================================
-struct NodeRecord
+struct SNodeRecord
 {
 	int Node;
 
-	DirectedWeightedEdge IncomingEdge;
+	CDirectedWeightedEdge IncomingEdge;
 
 	float CostSoFar;
 	float EstimatedTotalCost;
 };
 
 //=======================================================================================================================
-class DirectedWeightedGraph
+class CDirectedWeightedGraph
 {
 public:
-	DirectedWeightedGraph();
-	~DirectedWeightedGraph();
+	CDirectedWeightedGraph();
+	~CDirectedWeightedGraph();
 
 	void GetOutgoingEdges(int InNode);
 
 private:
-	std::vector<DirectedWeightedEdge> Edges;
+	std::vector<CDirectedWeightedEdge> Edges;
 };
 

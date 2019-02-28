@@ -1,11 +1,11 @@
 #include "DirectedWeightedGraph.h"
 
 //=======================================================================================================================
-DirectedWeightedGraph::DirectedWeightedGraph()
+CDirectedWeightedGraph::CDirectedWeightedGraph()
 {
 }
 
 //=======================================================================================================================
-DirectedWeightedGraph::~DirectedWeightedGraph()
+CDirectedWeightedGraph::~CDirectedWeightedGraph()
 {
 }
