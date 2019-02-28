@@ -5,8 +5,11 @@
 //=======================================================================================================================
 class CDirectedWeightedEdge
 {
-
 public:
+	CDirectedWeightedEdge();
+	CDirectedWeightedEdge(float InCost, int InSource, int InSink);
+	~CDirectedWeightedEdge();
+
 	inline float GetCost() const { return Cost; }
 
 	inline int GetSource() const { return Source; }
@@ -20,13 +23,26 @@ private:
 };
 
 //=======================================================================================================================
+enum class EGraph
+{
+	NONE,
+	PALLET,
+	TILED
+};
+
+//=======================================================================================================================
 class CDirectedWeightedGraph
 {
 public:
 	CDirectedWeightedGraph();
+	CDirectedWeightedGraph(EGraph GraphType);
 	~CDirectedWeightedGraph();
 
 	void GetOutgoingEdges(int InNode, std::vector<const CDirectedWeightedEdge*>& OutOutgoingEdges) const;
+
+private:
+	void CreatePalletGraph();
+	void GenerateTiledGraph();
 
 private:
 	std::vector<CDirectedWeightedEdge> Edges;

@@ -6,6 +6,8 @@
 #include "Behavior/Behavior.h"
 
 class CFlock;
+class CDirectedWeightedGraph;
+
 struct SWeightedBehavior;
 
 //=======================================================================================================================
@@ -49,6 +51,8 @@ private:
 
 	CFlock* Flock;
 	std::vector<SWeightedBehavior> FlockBehaviors;
+
+	CDirectedWeightedGraph* Graph;
 
 	EBehavior CurrentBehavior;
 };

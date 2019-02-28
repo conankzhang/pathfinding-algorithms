@@ -8,6 +8,8 @@
 #include "Behavior/wander-steering.h"
 #include "Behavior/DynamicSeparation.h"
 
+#include "Pathfinding/DirectedWeightedGraph.h"
+
 //=======================================================================================================================
 void ofApp::setup()
 {
@@ -20,6 +22,8 @@ void ofApp::setup()
 	Target.y = ofGetWindowHeight() / 2;
 
 	TargetSize = 10.0f;
+
+	Graph = new CDirectedWeightedGraph(EGraph::PALLET);
 }
 
 //=======================================================================================================================
