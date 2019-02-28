@@ -4,13 +4,14 @@
 #include "../Pathfinding/DivisionScheme.h"
 #include "../Entity/Boid.h"
 
-#include <queue>
+#include <stack>
 
 //=======================================================================================================================
-CDynamicPathFollow::CDynamicPathFollow(std::queue<const CDirectedWeightedEdge*>& InPath, CDivisionScheme* InDivisionScheme) :
+CDynamicPathFollow::CDynamicPathFollow(std::stack<const CDirectedWeightedEdge*>& InPath, CDivisionScheme* InDivisionScheme, const ofVec2f& InClickTarget) :
 	Path(InPath),
-	TargetRadius(50.0f),
-	DivisionScheme(InDivisionScheme)
+	TargetRadius(25.0f),
+	DivisionScheme(InDivisionScheme),
+	ClickTarget(InClickTarget)
 
 {
 }
@@ -25,7 +26,7 @@ SBehaviorOutput CDynamicPathFollow::GetBehaviorOutput(const CBoid& InBoid)
 {
 	if (!Path.empty() && DivisionScheme)
 	{
-		ofVec2f Target = DivisionScheme->Localize(Path.front()->GetSink());
+		ofVec2f Target = DivisionScheme->Localize(Path.top()->GetSink());
 		SeekSteering.SetTarget(Target);
 
 		float Distance = (InBoid.GetPosition() - Target).length();
@@ -35,11 +36,18 @@ SBehaviorOutput CDynamicPathFollow::GetBehaviorOutput(const CBoid& InBoid)
 
 			if (!Path.empty())
 			{
-				Target = DivisionScheme->Localize(Path.front()->GetSink());
+				Target = DivisionScheme->Localize(Path.top()->GetSink());
 				SeekSteering.SetTarget(Target);
+			}
+			else
+			{
+				SeekSteering.SetTarget(ClickTarget);
 			}
 		}
 	}
 
-	return SeekSteering.GetBehaviorOutput(InBoid);
+	SBehaviorOutput BehaviorOutput = SeekSteering.GetBehaviorOutput(InBoid);
+	BehaviorOutput.Dynamic = false;
+
+	return BehaviorOutput;
 }

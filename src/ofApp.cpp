@@ -30,7 +30,7 @@ void ofApp::setup()
 	Heuristic = new CZeroEstimate(DivisionScheme);
 
 	Flock = new CFlock(1, FlockBehaviors, ofColor::black);
-	FlockBehaviors.push_back(SWeightedBehavior(new CDynamicPathFollow(Path, DivisionScheme), 1));
+	FlockBehaviors.push_back(SWeightedBehavior(new CDynamicPathFollow(Path, DivisionScheme, Target), 1));
 	FlockBehaviors.push_back(SWeightedBehavior(new CDynamicLookWhereYouAreGoing(), 1));
 }
 

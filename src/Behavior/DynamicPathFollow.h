@@ -3,7 +3,7 @@
 
 #include "seek-steering.h"
 
-#include <queue>
+#include <stack>
 
 class CDivisionScheme;
 class CDirectedWeightedEdge;
@@ -12,7 +12,7 @@ class CDirectedWeightedEdge;
 class CDynamicPathFollow : public CBehavior
 {
 public:
-	CDynamicPathFollow(std::queue<const CDirectedWeightedEdge*>& InPath, CDivisionScheme* InDivisionScheme);
+	CDynamicPathFollow(std::stack<const CDirectedWeightedEdge*>& InPath, CDivisionScheme* InDivisionScheme, const ofVec2f& InClickTarget);
 	~CDynamicPathFollow();
 
 	virtual SBehaviorOutput GetBehaviorOutput(const CBoid& InBoid) override;
@@ -21,7 +21,9 @@ private:
 	cseek_steering SeekSteering;
 
 	CDivisionScheme* DivisionScheme;
-	std::queue<const CDirectedWeightedEdge*>& Path;
+	std::stack<const CDirectedWeightedEdge*>& Path;
 
 	float TargetRadius;
+
+	const ofVec2f& ClickTarget;
 };

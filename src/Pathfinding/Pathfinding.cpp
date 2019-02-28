@@ -3,6 +3,7 @@
 #include "DirectedWeightedGraph.h"
 
 #include <map>
+#include <stack>
 #include <queue>
 
 //=======================================================================================================================
@@ -26,7 +27,7 @@ Pathfinding::SNodeRecord::SNodeRecord(int InNode, const CDirectedWeightedEdge* I
 }
 
 //=======================================================================================================================
-bool Pathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::queue<const CDirectedWeightedEdge*>& OutPath)
+bool Pathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::stack<const CDirectedWeightedEdge*>& OutPath)
 {
 	if (!Heuristic || !Graph)
 	{
@@ -102,7 +103,7 @@ bool Pathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedG
 			return false;
 		}
 
-		OutPath = std::queue<const CDirectedWeightedEdge*>();
+		OutPath = std::stack<const CDirectedWeightedEdge*>();
 
 		while (CurrentRecord->Node != StartNode)
 		{

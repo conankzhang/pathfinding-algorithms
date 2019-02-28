@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include <queue>
+#include <stack>
 
 class CDirectedWeightedEdge;
 class CDirectedWeightedGraph;
@@ -32,5 +32,5 @@ namespace Pathfinding
 		}
 	};
 
-	bool FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::queue<const CDirectedWeightedEdge*>& OutPath);
+	bool FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::stack<const CDirectedWeightedEdge*>& OutPath);
 };

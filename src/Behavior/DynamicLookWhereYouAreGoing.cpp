@@ -25,6 +25,7 @@ SBehaviorOutput CDynamicLookWhereYouAreGoing::GetBehaviorOutput(const CBoid& InB
 
 	DynamicAlign.SetTargetOrientation(TargetOrientation);
 	BehaviorOutput = DynamicAlign.GetBehaviorOutput(InBoid);
+	BehaviorOutput.Dynamic = false;
 
 	return BehaviorOutput;
 }

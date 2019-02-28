@@ -3,7 +3,7 @@
 #include "ofMain.h"
 
 #include <vector>
-#include <queue>
+#include <stack>
 #include "Behavior/Behavior.h"
 
 class CFlock;
@@ -45,5 +45,5 @@ private:
 	CDirectedWeightedGraph* Graph;
 	CHeuristic* Heuristic;
 
-	std::queue<const CDirectedWeightedEdge*> Path;
+	std::stack<const CDirectedWeightedEdge*> Path;
 };
