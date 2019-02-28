@@ -25,13 +25,13 @@ void ofApp::setup()
 
 	TargetSize = 10.0f;
 
-	Flock = new CFlock(1, FlockBehaviors, ofColor::black);
-	FlockBehaviors.push_back(SWeightedBehavior(new CDynamicPathFollow(), 1));
-	FlockBehaviors.push_back(SWeightedBehavior(new CDynamicLookWhereYouAreGoing(), 1));
-
 	Graph = new CDirectedWeightedGraph(EGraph::PALLET, ofGetWindowWidth(), ofGetWindowHeight(), 10, 10);
 	DivisionScheme = new CTiledDivisionScheme(10.0f, 10.0f, Graph);
 	Heuristic = new CZeroEstimate(DivisionScheme);
+
+	Flock = new CFlock(1, FlockBehaviors, ofColor::black);
+	FlockBehaviors.push_back(SWeightedBehavior(new CDynamicPathFollow(Path, DivisionScheme), 1));
+	FlockBehaviors.push_back(SWeightedBehavior(new CDynamicLookWhereYouAreGoing(), 1));
 }
 
 //=======================================================================================================================

@@ -26,7 +26,7 @@ Pathfinding::SNodeRecord::SNodeRecord(int InNode, const CDirectedWeightedEdge* I
 }
 
 //=======================================================================================================================
-bool Pathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::vector<const CDirectedWeightedEdge*>& OutPath)
+bool Pathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::queue<const CDirectedWeightedEdge*>& OutPath)
 {
 	if (!Heuristic || !Graph)
 	{
@@ -102,9 +102,11 @@ bool Pathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedG
 			return false;
 		}
 
+		OutPath = std::queue<const CDirectedWeightedEdge*>();
+
 		while (CurrentRecord->Node != StartNode)
 		{
-			OutPath.push_back(CurrentRecord->IncomingEdge);
+			OutPath.push(CurrentRecord->IncomingEdge);
 			CurrentRecord = ClosedList.at(CurrentRecord->IncomingEdge->GetSource());
 		}
 
