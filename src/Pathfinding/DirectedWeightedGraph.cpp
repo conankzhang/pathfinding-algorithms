@@ -68,7 +68,7 @@ void CDirectedWeightedGraph::GetOutgoingEdges(int InNode, std::vector<const CDir
 //=======================================================================================================================
 int CDirectedWeightedGraph::GetNodeAt(int Row, int Col)
 {
-	if (Row > 0 && Row < static_cast<int>(Nodes.size()) && Col > 0 && Col < static_cast<int>(Nodes[0].size()))
+	if (Row >= 0 && Row < static_cast<int>(Nodes.size()) && Col >= 0 && Col < static_cast<int>(Nodes[0].size()))
 	{
 		return Nodes[Row][Col];
 	}
@@ -178,7 +178,13 @@ void CDirectedWeightedGraph::GenerateTiledGraph()
 	int Height = ScreenHeight / TileHeight;
 	Edges.reserve(Width * Height);
 
-	Nodes.reserve(Width);
+	Nodes.reserve(Height);
+
+	for (int i = 0; i < Height; i++)
+	{
+		Nodes.push_back(std::vector<int>());
+	}
+
 	for (auto VectorOfNodes : Nodes)
 	{
 		VectorOfNodes.reserve(Height);
@@ -189,7 +195,7 @@ void CDirectedWeightedGraph::GenerateTiledGraph()
 		for (int Column = 0; Column < Width; Column++)
 		{
 			int CurrentNode = (Row * Height) + Column;
-			Nodes[Row][Column] = CurrentNode;
+			Nodes[Row].push_back(CurrentNode);
 
 			if (Row > 0)
 			{
