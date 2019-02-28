@@ -215,7 +215,7 @@ float CDirectedWeightedGraph::CalculateCost(int Row, int Column)
 	{
 		if (Obstacle->IsInObstacle(Position))
 		{
-			return INT_MAX;
+			return 100000;
 		}
 	}
 

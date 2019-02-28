@@ -82,6 +82,11 @@ bool Pathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedG
 
 						EndNodeRecord->CostSoFar = CostSoFar;
 						EndNodeRecord->EstimatedTotalCost = CostSoFar + EstimatedCost;
+
+
+						SNodeRecord* UpdateNodeRecord = new SNodeRecord(-1, nullptr, -1, -1);
+						OpenList.push(UpdateNodeRecord);
+						OpenList.pop();
 					}
 					else
 					{
