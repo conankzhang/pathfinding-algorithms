@@ -8,15 +8,21 @@ class CDirectedWeightedGraph;
 class CTiledDivisionScheme : public CDivisionScheme
 {
 public:
-	CTiledDivisionScheme(float InWidth, float InHeight, CDirectedWeightedGraph* InGraph);
+	CTiledDivisionScheme(int InScreenWidth, int InScreenHeight, int InTileWidth, int InTileHeight, CDirectedWeightedGraph* InGraph);
 	~CTiledDivisionScheme();
 
 	virtual int Quantize(const ofVec2f& InPosition) const override;
 	virtual ofVec2f Localize(int InNode) const override;
 
 private:
-	float Width;
-	float Height;
+	int ScreenWidth;
+	int ScreenHeight;
+
+	int TileWidth;
+	int TileHeight;
+
+	int GraphWidth;
+	int GraphHeight;
 
 	CDirectedWeightedGraph* Graph;
 };

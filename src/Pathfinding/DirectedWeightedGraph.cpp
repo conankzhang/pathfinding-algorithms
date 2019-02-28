@@ -66,19 +66,6 @@ void CDirectedWeightedGraph::GetOutgoingEdges(int InNode, std::vector<const CDir
 }
 
 //=======================================================================================================================
-int CDirectedWeightedGraph::GetNodeAt(int Row, int Col)
-{
-	if (Row >= 0 && Row < static_cast<int>(Nodes.size()) && Col >= 0 && Col < static_cast<int>(Nodes[0].size()))
-	{
-		return Nodes[Row][Col];
-	}
-	else
-	{
-		return -1;
-	}
-}
-
-//=======================================================================================================================
 void CDirectedWeightedGraph::CreatePalletGraph()
 {
 	CDirectedWeightedEdge EdgeAB(5, 1, 2);
@@ -174,44 +161,31 @@ void CDirectedWeightedGraph::CreatePalletGraph()
 //=======================================================================================================================
 void CDirectedWeightedGraph::GenerateTiledGraph()
 {
-	int Width = ScreenWidth / TileWidth;
-	int Height = ScreenHeight / TileHeight;
-	Edges.reserve(Width * Height);
+	int GraphWidth = ScreenWidth / TileWidth;
+	int GraphHeight = ScreenHeight / TileHeight;
+	Edges.reserve(GraphWidth * GraphHeight);
 
-	Nodes.reserve(Height);
-
-	for (int i = 0; i < Height; i++)
+	for (int Row = 0; Row < GraphHeight; Row++)
 	{
-		Nodes.push_back(std::vector<int>());
-	}
-
-	for (auto VectorOfNodes : Nodes)
-	{
-		VectorOfNodes.reserve(Height);
-	}
-
-	for (int Row = 0; Row < Height; Row++)
-	{
-		for (int Column = 0; Column < Width; Column++)
+		for (int Column = 0; Column < GraphWidth; Column++)
 		{
-			int CurrentNode = (Row * Height) + Column;
-			Nodes[Row].push_back(CurrentNode);
+			int CurrentNode = (Row * GraphHeight) + Column;
 
 			if (Row > 0)
 			{
-				CDirectedWeightedEdge NorthEdge(1, CurrentNode, CurrentNode - Height);
+				CDirectedWeightedEdge NorthEdge(1, CurrentNode, CurrentNode - GraphHeight);
 				Edges.push_back(NorthEdge);
 			}
 
-			if (Column < Width - 1)
+			if (Column < GraphWidth - 1)
 			{
 				CDirectedWeightedEdge EastEdge(1, CurrentNode, CurrentNode + 1);
 				Edges.push_back(EastEdge);
 			}
 
-			if (Row < Height - 1)
+			if (Row < GraphHeight - 1)
 			{
-				CDirectedWeightedEdge SouthEdge(1, CurrentNode, CurrentNode + Height);
+				CDirectedWeightedEdge SouthEdge(1, CurrentNode, CurrentNode + GraphHeight);
 				Edges.push_back(SouthEdge);
 			}
 

@@ -26,7 +26,7 @@ void ofApp::setup()
 	TargetSize = 10.0f;
 
 	Graph = new CDirectedWeightedGraph(EGraph::TILED, ofGetWindowWidth(), ofGetWindowHeight(), 100, 100);
-	DivisionScheme = new CTiledDivisionScheme(100.0f, 100.0f, Graph);
+	DivisionScheme = new CTiledDivisionScheme(ofGetWindowWidth(), ofGetWindowHeight(), 100.0f, 100.0f, Graph);
 	Heuristic = new CZeroEstimate(DivisionScheme);
 
 	Flock = new CFlock(1, FlockBehaviors, ofColor::black);

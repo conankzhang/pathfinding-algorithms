@@ -39,7 +39,6 @@ public:
 	~CDirectedWeightedGraph();
 
 	void GetOutgoingEdges(int InNode, std::vector<const CDirectedWeightedEdge*>& OutOutgoingEdges) const;
-	int GetNodeAt(int Row, int Col);
 
 private:
 	void CreatePalletGraph();
@@ -47,7 +46,6 @@ private:
 
 private:
 	std::vector<CDirectedWeightedEdge> Edges;
-	std::vector<std::vector<int>> Nodes;
 
 	int ScreenWidth;
 	int ScreenHeight;
