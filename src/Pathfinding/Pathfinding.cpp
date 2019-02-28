@@ -38,7 +38,7 @@ bool Pathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedG
 	std::map<int, SNodeRecord*> ClosedList;
 
 	std::map<int, SNodeRecord*> OpenNodes;
-	std::priority_queue<SNodeRecord*> OpenList;
+	std::priority_queue<SNodeRecord*, std::vector<SNodeRecord*>, SCompareNodeRecord> OpenList;
 
 	OpenList.push(StartRecord);
 	OpenNodes.insert({ StartRecord->Node, StartRecord });
@@ -71,16 +71,6 @@ bool Pathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedG
 					float EstimatedCost = Heuristic->GetEstimate(EndNode, GoalNode);
 
 					SNodeRecord* EndNodeRecord;
-					if (ClosedList.count(EndNode) > 0)
-					{
-						EndNodeRecord = ClosedList.at(EndNode);
-						if (EndNodeRecord && EndNodeRecord->CostSoFar <= CostSoFar)
-						{
-							continue;
-						}
-						ClosedList.erase(EndNode);
-					}
-
 					if (OpenNodes.count(EndNode) > 0)
 					{
 						EndNodeRecord = OpenNodes.at(EndNode);

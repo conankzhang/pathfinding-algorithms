@@ -23,5 +23,13 @@ namespace Pathfinding
 		float EstimatedTotalCost;
 	};
 
+	struct SCompareNodeRecord
+	{
+		bool operator()(const SNodeRecord* const lhs, const SNodeRecord* const rhs) const
+		{
+			return lhs->EstimatedTotalCost > rhs->EstimatedTotalCost;
+		}
+	};
+
 	bool FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::vector<const CDirectedWeightedEdge*>& OutPath);
 };
