@@ -2,6 +2,8 @@
 
 #include <vector>
 
+class CObstacle;
+
 //=======================================================================================================================
 class CDirectedWeightedEdge
 {
@@ -35,7 +37,7 @@ class CDirectedWeightedGraph
 {
 public:
 	CDirectedWeightedGraph();
-	CDirectedWeightedGraph(EGraph GraphType, int InScreenWidth, int InScreenHeight, int InTileWidth, int InTileHeight);
+	CDirectedWeightedGraph(EGraph GraphType, int InScreenWidth, int InScreenHeight, int InTileWidth, int InTileHeight, const std::vector<CObstacle*>& InObstacles);
 	~CDirectedWeightedGraph();
 
 	void GetOutgoingEdges(int InNode, std::vector<const CDirectedWeightedEdge*>& OutOutgoingEdges) const;
@@ -44,8 +46,11 @@ private:
 	void CreatePalletGraph();
 	void GenerateTiledGraph();
 
+	float CalculateCost(int Row, int Column);
+
 private:
 	std::vector<CDirectedWeightedEdge> Edges;
+	const std::vector<CObstacle*>& Obstacles;
 
 	int ScreenWidth;
 	int ScreenHeight;

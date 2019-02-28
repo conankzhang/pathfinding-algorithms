@@ -1,5 +1,7 @@
 #include "DirectedWeightedGraph.h"
 
+#include "Obstacle.h"
+
 //=======================================================================================================================
 CDirectedWeightedEdge::CDirectedWeightedEdge() :
 	Cost(-1),
@@ -30,11 +32,12 @@ CDirectedWeightedGraph::CDirectedWeightedGraph()
 }
 
 //=======================================================================================================================
-CDirectedWeightedGraph::CDirectedWeightedGraph(EGraph GraphType, int InScreenWidth, int InScreenHeight, int InTileWidth, int InTileHeight) :
+CDirectedWeightedGraph::CDirectedWeightedGraph(EGraph GraphType, int InScreenWidth, int InScreenHeight, int InTileWidth, int InTileHeight, const std::vector<CObstacle*>& InObstacles) :
 	ScreenWidth(InScreenWidth),
 	ScreenHeight(InScreenHeight),
 	TileWidth(InTileWidth),
-	TileHeight(InTileHeight)
+	TileHeight(InTileHeight),
+	Obstacles(InObstacles)
 {
 	switch (GraphType)
 	{
@@ -171,29 +174,50 @@ void CDirectedWeightedGraph::GenerateTiledGraph()
 		{
 			int CurrentNode = (Row * GraphWidth) + Column;
 
+			float Cost = CalculateCost(Row, Column);
+
 			if (Row > 0)
 			{
-				CDirectedWeightedEdge NorthEdge(1, CurrentNode, CurrentNode - GraphHeight);
+				CDirectedWeightedEdge NorthEdge(Cost, CurrentNode, CurrentNode - GraphHeight);
 				Edges.push_back(NorthEdge);
 			}
 
 			if (Column < GraphWidth - 1)
 			{
-				CDirectedWeightedEdge EastEdge(1, CurrentNode, CurrentNode + 1);
+				CDirectedWeightedEdge EastEdge(Cost, CurrentNode, CurrentNode + 1);
 				Edges.push_back(EastEdge);
 			}
 
 			if (Row < GraphHeight - 1)
 			{
-				CDirectedWeightedEdge SouthEdge(1, CurrentNode, CurrentNode + GraphHeight);
+				CDirectedWeightedEdge SouthEdge(Cost, CurrentNode, CurrentNode + GraphHeight);
 				Edges.push_back(SouthEdge);
 			}
 
 			if (Column > 0)
 			{
-				CDirectedWeightedEdge WestEdge(1, CurrentNode, CurrentNode - 1);
+				CDirectedWeightedEdge WestEdge(Cost, CurrentNode, CurrentNode - 1);
 				Edges.push_back(WestEdge);
 			}
 		}
 	}
+}
+
+//=======================================================================================================================
+float CDirectedWeightedGraph::CalculateCost(int Row, int Column)
+{
+	ofVec2f Position;
+
+	Position.x = Column * TileWidth;
+	Position.y = Row * TileHeight;
+
+	for (auto Obstacle : Obstacles)
+	{
+		if (Obstacle->IsInObstacle(Position))
+		{
+			return INT_MAX;
+		}
+	}
+
+	return 1;
 }

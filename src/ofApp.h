@@ -6,6 +6,7 @@
 #include <stack>
 #include "Behavior/Behavior.h"
 
+class CObstacle;
 class CFlock;
 class CDirectedWeightedGraph;
 class CDirectedWeightedEdge;
@@ -35,6 +36,9 @@ public:
 	void gotMessage(ofMessage msg);
 
 private:
+	void CreateObstacles();
+
+private:
 	float TargetSize;
 	ofVec2f Target;
 
@@ -46,4 +50,6 @@ private:
 	CHeuristic* Heuristic;
 
 	std::stack<const CDirectedWeightedEdge*> Path;
+
+	std::vector<CObstacle*> Obstacles;
 };

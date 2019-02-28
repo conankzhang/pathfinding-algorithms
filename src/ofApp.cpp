@@ -13,6 +13,7 @@
 #include "Pathfinding/Pathfinding.h"
 #include "Pathfinding/Heuristic.h"
 #include "Pathfinding/TiledDivisionScheme.h"
+#include "Pathfinding/Obstacle.h"
 
 //=======================================================================================================================
 void ofApp::setup()
@@ -20,8 +21,10 @@ void ofApp::setup()
 	ofBackground(ofColor::white);
 	ofSetCircleResolution(50);
 
+	CreateObstacles();
+
 	Target.x = 0.0f;
-	Target.y = 0.0f;
+	Target.y = ofGetWindowHeight();
 
 	TargetSize = 10.0f;
 
@@ -52,6 +55,14 @@ void ofApp::draw()
 
 	ofDrawRectangle(Target.x, Target.y, TargetSize, TargetSize);
 
+	for (auto Obstacle : Obstacles)
+	{
+		if (Obstacle)
+		{
+			Obstacle->Draw();
+		}
+	}
+
 	if (Flock)
 	{
 		Flock->Draw();
@@ -77,6 +88,12 @@ void ofApp::mousePressed(int x, int y, int button)
 
 		Pathfinding::FindPath(StartNode, GoalNode, Graph, Heuristic, Path);
 	}
+}
+
+//=======================================================================================================================
+void ofApp::CreateObstacles()
+{
+	Obstacles.push_back(new CObstacle(100.0f, 100.0f, 100.0f, 100.0f));
 }
 
 //--------------------------------------------------------------
@@ -114,7 +131,7 @@ void ofApp::windowResized(int w, int h){
 
 }
 
-//--------------------------------------------------------------k
+//--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg){
 
 }

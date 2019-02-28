@@ -184,6 +184,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Pathfinding\Obstacle.cpp" />
     <ClCompile Include="src\Behavior\DynamicPathFollow.cpp" />
     <ClCompile Include="src\Pathfinding\DivisionScheme.cpp" />
     <ClCompile Include="src\Pathfinding\Heuristic.cpp" />
@@ -245,6 +246,7 @@
     <ClCompile Include="src\Pathfinding\TiledDivisionScheme.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Pathfinding\Obstacle.h" />
     <ClInclude Include="src\Behavior\DynamicPathFollow.h" />
     <ClInclude Include="src\Pathfinding\DivisionScheme.h" />
     <ClInclude Include="src\Pathfinding\Heuristic.h" />
