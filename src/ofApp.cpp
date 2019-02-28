@@ -19,20 +19,18 @@ void ofApp::setup()
 	ofBackground(ofColor::white);
 	ofSetCircleResolution(50);
 
-	CurrentBehavior = EBehavior::NONE;
-
-	Target.x = ofGetWindowWidth() / 2;
-	Target.y = ofGetWindowHeight() / 2;
+	Target.x = 0.0f;
+	Target.y = 0.0f;
 
 	TargetSize = 10.0f;
 
+	Flock = new CFlock(1, FlockBehaviors, ofColor::black);
+	FlockBehaviors.push_back(SWeightedBehavior(new cseek_steering(Target), 1));
+	FlockBehaviors.push_back(SWeightedBehavior(new CDynamicLookWhereYouAreGoing(), 1));
+
 	Graph = new CDirectedWeightedGraph(EGraph::PALLET, ofGetWindowWidth(), ofGetWindowHeight(), 10, 10);
-	Heuristic = new CZeroEstimate(new CTiledDivisionScheme(10.0f, 10.0f, Graph));
-
-	std::vector<const CDirectedWeightedEdge*> Path;
-	Pathfinding::FindPath(3, 7, Graph, Heuristic, Path);
-
-	bool b = true;
+	DivisionScheme = new CTiledDivisionScheme(10.0f, 10.0f, Graph);
+	Heuristic = new CZeroEstimate(DivisionScheme);
 }
 
 //=======================================================================================================================
@@ -42,11 +40,6 @@ void ofApp::update()
 	{
 		Flock->Update(ofGetLastFrameTime());
 	}
-
-	if (WanderFlock)
-	{
-		WanderFlock->Update(ofGetLastFrameTime());
-	}
 }
 
 //=======================================================================================================================
@@ -54,52 +47,20 @@ void ofApp::draw()
 {
 	ofSetColor(ofColor::black);
 
-	ofDrawBitmapString("Press 1: Basic Motion", 50, 50);
-	ofDrawBitmapString("Press 2: Seek Steering", 50, 75);
-	ofDrawBitmapString("Press 3: Wander Steering", 50, 100);
-	ofDrawBitmapString("Press 4: Flocking Behavior", 50, 125);
+	ofDrawBitmapString("Click anywhere to start pathfinding.", 50, 50);
 
-	if (CurrentBehavior == EBehavior::SEEK)
-	{
-		ofDrawRectangle(Target.x, Target.y, TargetSize, TargetSize);
-	}
+	ofDrawRectangle(Target.x, Target.y, TargetSize, TargetSize);
 
 	if (Flock)
 	{
 		Flock->Draw();
-	}
-
-	if (WanderFlock)
-	{
-		WanderFlock->Draw();
 	}
 }
 
 //=======================================================================================================================
 void ofApp::keyPressed(int key)
 {
-	EBehavior DesiredBehavior = EBehavior::BASIC;
 
-	switch (key)
-	{
-	case '1':
-		DesiredBehavior = EBehavior::BASIC;
-		break;
-	case '2':
-		DesiredBehavior = EBehavior::SEEK;
-		break;
-	case '3':
-		DesiredBehavior = EBehavior::WANDER;
-		break;
-	case '4':
-		DesiredBehavior = EBehavior::FLOCK;
-		break;
-	}
-
-	if (CurrentBehavior != DesiredBehavior)
-	{
-		HandleNewBehavior(DesiredBehavior);
-	}
 }
 
 //=======================================================================================================================
@@ -107,56 +68,14 @@ void ofApp::mousePressed(int x, int y, int button)
 {
 	Target.x = x;
 	Target.y = y;
-}
 
-//=======================================================================================================================
-void ofApp::HandleNewBehavior(EBehavior DesiredBehavior)
-{
-	if (Flock)
+	if (DivisionScheme && Flock)
 	{
-		delete Flock;
-		Flock = nullptr;
+		int StartNode = DivisionScheme->Quantize(Flock->GetCenterOfMass());
+		int GoalNode = DivisionScheme->Quantize(Target);
 
-		FlockBehaviors.clear();
+		Pathfinding::FindPath(StartNode, GoalNode, Graph, Heuristic, Path);
 	}
-
-	if (WanderFlock)
-	{
-		delete WanderFlock;
-		WanderFlock = nullptr;
-
-		WanderBehaviors.clear();
-	}
-
-	switch (DesiredBehavior)
-	{
-	case EBehavior::BASIC:
-		Flock = new CFlock(1, FlockBehaviors, ofColor::black);
-		FlockBehaviors.push_back(SWeightedBehavior(new cbasic_motion(), 1));
-		FlockBehaviors.push_back(SWeightedBehavior(new CDynamicLookWhereYouAreGoing(), 1));
-		break;
-	case EBehavior::SEEK:
-		Flock = new CFlock(1, FlockBehaviors, ofColor::black);
-		FlockBehaviors.push_back(SWeightedBehavior(new cseek_steering(Target), 1));
-		FlockBehaviors.push_back(SWeightedBehavior(new CDynamicLookWhereYouAreGoing(), 1));
-		break;
-	case EBehavior::WANDER:
-		Flock = new CFlock(1, FlockBehaviors, ofColor::lightGray);
-		FlockBehaviors.push_back(SWeightedBehavior(new cwander_steering(), 1));
-		break;
-	case EBehavior::FLOCK:
-		WanderFlock = new CFlock(1, WanderBehaviors, ofColor::lightGray);
-		WanderBehaviors.push_back(SWeightedBehavior(new cwander_steering(), 1));
-
-		Flock = new CFlock(15, FlockBehaviors, ofColor::black);
-		FlockBehaviors.push_back(SWeightedBehavior(new cseek_steering(WanderFlock->GetCenterOfMass()), 0.5f));
-		FlockBehaviors.push_back(SWeightedBehavior(new CDynamicSeparation(Flock->GetBoids()), 1.0f));
-		FlockBehaviors.push_back(SWeightedBehavior(new cseek_steering(Flock->GetCenterOfMass()), 0.3f));
-		FlockBehaviors.push_back(SWeightedBehavior(new CDynamicLookWhereYouAreGoing(), 1));
-		break;
-	}
-
-	CurrentBehavior = DesiredBehavior;
 }
 
 //--------------------------------------------------------------

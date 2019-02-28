@@ -7,19 +7,11 @@
 
 class CFlock;
 class CDirectedWeightedGraph;
+class CDirectedWeightedEdge;
+class CDivisionScheme;
 class CHeuristic;
 
 struct SWeightedBehavior;
-
-//=======================================================================================================================
-enum class EBehavior
-{
-	NONE,
-	BASIC,
-	SEEK,
-	WANDER,
-	FLOCK,
-};
 
 //=======================================================================================================================
 class ofApp : public ofBaseApp
@@ -42,19 +34,15 @@ public:
 	void gotMessage(ofMessage msg);
 
 private:
-	void HandleNewBehavior(EBehavior DesiredBehavior);
-
 	float TargetSize;
 	ofVec2f Target;
-
-	CFlock* WanderFlock;
-	std::vector<SWeightedBehavior> WanderBehaviors;
 
 	CFlock* Flock;
 	std::vector<SWeightedBehavior> FlockBehaviors;
 
+	CDivisionScheme* DivisionScheme;
 	CDirectedWeightedGraph* Graph;
 	CHeuristic* Heuristic;
 
-	EBehavior CurrentBehavior;
+	std::vector<const CDirectedWeightedEdge*> Path;
 };
