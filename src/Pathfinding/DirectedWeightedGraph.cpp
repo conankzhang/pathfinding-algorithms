@@ -52,11 +52,11 @@ CDirectedWeightedGraph::~CDirectedWeightedGraph()
 //=======================================================================================================================
 void CDirectedWeightedGraph::GetOutgoingEdges(int InNode, std::vector<const CDirectedWeightedEdge*>& OutOutgoingEdges) const
 {
-	for (const CDirectedWeightedEdge Edge : Edges)
+	for (std::vector<CDirectedWeightedEdge>::const_iterator it = Edges.begin(); it != Edges.end(); ++it)
 	{
-		if (Edge.GetSource() == InNode)
+		if ((*it).GetSource() == InNode)
 		{
-			OutOutgoingEdges.push_back(&Edge);
+			OutOutgoingEdges.push_back(&(*it));
 		}
 	}
 }

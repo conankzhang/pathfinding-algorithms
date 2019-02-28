@@ -10,6 +10,7 @@
 
 #include "Pathfinding/DirectedWeightedGraph.h"
 #include "Pathfinding/Pathfinding.h"
+#include "Pathfinding/Heuristic.h"
 
 //=======================================================================================================================
 void ofApp::setup()
@@ -25,9 +26,10 @@ void ofApp::setup()
 	TargetSize = 10.0f;
 
 	Graph = new CDirectedWeightedGraph(EGraph::PALLET);
+	Heuristic = new CZeroEstimate();
+
 	std::vector<const CDirectedWeightedEdge*> Path;
-	Pathfinding::FindPath(1, 16, Graph, nullptr, Path);
-	bool b = true;
+	Pathfinding::FindPath(1, 16, Graph, Heuristic, Path);
 }
 
 //=======================================================================================================================

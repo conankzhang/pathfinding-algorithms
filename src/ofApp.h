@@ -7,6 +7,7 @@
 
 class CFlock;
 class CDirectedWeightedGraph;
+class CHeuristic;
 
 struct SWeightedBehavior;
 
@@ -53,6 +54,7 @@ private:
 	std::vector<SWeightedBehavior> FlockBehaviors;
 
 	CDirectedWeightedGraph* Graph;
+	CHeuristic* Heuristic;
 
 	EBehavior CurrentBehavior;
 };
