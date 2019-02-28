@@ -1,0 +1,9 @@
+ofxAssimpModelLoader
+ofxGui
+ofxNetwork
+ofxOsc
+ofxSvg
+ofxThreadedImageLoader
+ofxUnitTests
+ofxVectorGraphics
+ofxXmlSettings
