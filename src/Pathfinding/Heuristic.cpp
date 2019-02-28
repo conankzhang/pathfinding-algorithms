@@ -1,14 +1,23 @@
 #include "Heuristic.h"
 
+#include "DivisionScheme.h"
+
 //=======================================================================================================================
-float CZeroHeuristic::GetEstimate(int InNode) const
+float CZeroHeuristic::GetEstimate(int CurrentNode, int GoalNode) const
 {
 	return 0;
 }
 
 //=======================================================================================================================
-float CEuclideanHeuristic::GetEstimate(int InNode) const
+float CEuclideanHeuristic::GetEstimate(int CurrentNode, int GoalNode) const
 {
-	// #TODO
-	return 0;
+	if (!DivisionScheme)
+	{
+		return 0;
+	}
+
+	ofVec2f CurrentPosition = DivisionScheme->Localize(CurrentNode);
+	ofVec2f GoalPosition = DivisionScheme->Localize(GoalNode);
+
+	return (CurrentPosition - GoalPosition).length();
 }

@@ -2,7 +2,7 @@
 
 #include "DirectedWeightedGraph.h"
 
-bool DivisionScheme::GetWaypointPath(const std::vector<const CDirectedWeightedEdge*>& Path, std::vector<ofVec2f>& OutWaypoints) const
+bool CDivisionScheme::GetWaypointPath(const std::vector<const CDirectedWeightedEdge*>& Path, std::vector<ofVec2f>& OutWaypoints) const
 {
 	for (std::vector<const CDirectedWeightedEdge*>::const_reverse_iterator Edge = Path.rbegin(); Edge != Path.rend(); ++Edge )
 	{

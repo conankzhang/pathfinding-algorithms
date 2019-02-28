@@ -6,7 +6,7 @@
 
 class CDirectedWeightedEdge;
 
-class DivisionScheme
+class CDivisionScheme
 {
 public:
 	virtual int Quantize(const ofVec2f& InPosition) const = 0;

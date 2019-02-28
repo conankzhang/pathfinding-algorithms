@@ -43,7 +43,7 @@ bool CPathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeighted
 		return false;
 	}
 
-	SNodeRecord* StartRecord = new SNodeRecord(StartNode, nullptr, 0, Heuristic->GetEstimate(StartNode));
+	SNodeRecord* StartRecord = new SNodeRecord(StartNode, nullptr, 0, Heuristic->GetEstimate(StartNode, GoalNode));
 
 	std::map<int, SNodeRecord*> ClosedList;
 
@@ -78,7 +78,7 @@ bool CPathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeighted
 					EndNode = Edge->GetSink();
 
 					float CostSoFar = CurrentRecord->CostSoFar + Edge->GetCost();
-					float EstimatedCost = Heuristic->GetEstimate(EndNode);
+					float EstimatedCost = Heuristic->GetEstimate(EndNode, GoalNode);
 
 					SNodeRecord* EndNodeRecord;
 					if (ClosedList.count(EndNode) > 0)
