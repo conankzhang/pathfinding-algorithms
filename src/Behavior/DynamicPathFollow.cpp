@@ -33,8 +33,11 @@ SBehaviorOutput CDynamicPathFollow::GetBehaviorOutput(const CBoid& InBoid)
 		{
 			Path.pop();
 
-			Target = DivisionScheme->Localize(Path.front()->GetSink());
-			SeekSteering.SetTarget(Target);
+			if (!Path.empty())
+			{
+				Target = DivisionScheme->Localize(Path.front()->GetSink());
+				SeekSteering.SetTarget(Target);
+			}
 		}
 	}
 
