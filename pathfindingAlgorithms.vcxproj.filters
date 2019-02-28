@@ -161,6 +161,7 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Pathfinding\DirectedWeightedGraph.cpp" />
+    <ClCompile Include="src\Pathfinding\Pathfinding.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -751,6 +752,7 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\Pathfinding\DirectedWeightedGraph.h" />
+    <ClInclude Include="src\Pathfinding\Pathfinding.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
