@@ -101,6 +101,7 @@ bool Pathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedG
 					else
 					{
 						EndNodeRecord = new SNodeRecord(EndNode, Edge, CostSoFar, CostSoFar + EstimatedCost);
+						// Hack to avoid obstacles
 						if (EndNodeRecord->EstimatedTotalCost >= 100000)
 						{
 							continue;
