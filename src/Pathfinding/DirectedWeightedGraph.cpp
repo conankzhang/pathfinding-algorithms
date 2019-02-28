@@ -103,6 +103,10 @@ void CDirectedWeightedGraph::CreatePalletGraph()
 	CDirectedWeightedEdge EdgeHG(3, 8, 7);
 	Edges.push_back(EdgeHG);
 
+	CDirectedWeightedEdge EdgeDL(5, 4, 12);
+	Edges.push_back(EdgeDL);
+	CDirectedWeightedEdge EdgeLD(5, 12, 4);
+	Edges.push_back(EdgeLD);
 	CDirectedWeightedEdge EdgeFI(4, 6, 9);
 	Edges.push_back(EdgeFI);
 	CDirectedWeightedEdge EdgeIF(4, 9, 6);

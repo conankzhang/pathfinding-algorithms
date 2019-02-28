@@ -9,6 +9,7 @@
 #include "Behavior/DynamicSeparation.h"
 
 #include "Pathfinding/DirectedWeightedGraph.h"
+#include "Pathfinding/Pathfinding.h"
 
 //=======================================================================================================================
 void ofApp::setup()
@@ -23,7 +24,10 @@ void ofApp::setup()
 
 	TargetSize = 10.0f;
 
-	Graph = new CDirectedWeightedGraph(EGraph::TILED);
+	Graph = new CDirectedWeightedGraph(EGraph::PALLET);
+	std::vector<const CDirectedWeightedEdge*> Path;
+	Pathfinding::FindPath(1, 16, Graph, nullptr, Path);
+	bool b = true;
 }
 
 //=======================================================================================================================
