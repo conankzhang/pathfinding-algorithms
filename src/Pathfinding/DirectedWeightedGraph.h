@@ -26,7 +26,7 @@ public:
 	CDirectedWeightedGraph();
 	~CDirectedWeightedGraph();
 
-	bool GetOutgoingEdges(int InNode, std::vector<CDirectedWeightedEdge*>& OutOutgoingEdges) const;
+	void GetOutgoingEdges(int InNode, std::vector<const CDirectedWeightedEdge*>& OutOutgoingEdges) const;
 
 private:
 	std::vector<CDirectedWeightedEdge> Edges;

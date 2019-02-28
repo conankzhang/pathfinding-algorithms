@@ -16,7 +16,7 @@ SNodeRecord::SNodeRecord() :
 }
 
 //=======================================================================================================================
-SNodeRecord::SNodeRecord(int InNode, CDirectedWeightedEdge* InEdge, float InCost, float InEstimatedCost) :
+SNodeRecord::SNodeRecord(int InNode, const CDirectedWeightedEdge* InEdge, float InCost, float InEstimatedCost) :
 	Node(InNode),
 	IncomingEdge(InEdge),
 	CostSoFar(InCost),
@@ -36,7 +36,7 @@ CPathfinding::~CPathfinding()
 }
 
 //=======================================================================================================================
-bool CPathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::vector<CDirectedWeightedEdge*>& OutPath) const
+bool CPathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::vector<const CDirectedWeightedEdge*>& OutPath) const
 {
 	if (!Heuristic || !Graph)
 	{
@@ -67,11 +67,11 @@ bool CPathfinding::FindPath(int StartNode, int GoalNode, const CDirectedWeighted
 				break;
 			}
 
-			std::vector<CDirectedWeightedEdge*> OutgoingEdges;
+			std::vector<const CDirectedWeightedEdge*> OutgoingEdges;
 			Graph->GetOutgoingEdges(CurrentRecord->Node, OutgoingEdges);
 
 			int EndNode;
-			for (CDirectedWeightedEdge* Edge : OutgoingEdges)
+			for (const CDirectedWeightedEdge* Edge : OutgoingEdges)
 			{
 				if (Edge)
 				{

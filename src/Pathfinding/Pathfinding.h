@@ -11,11 +11,11 @@ class CHeuristic;
 struct SNodeRecord
 {
 	SNodeRecord();
-	SNodeRecord(int InNode, CDirectedWeightedEdge* InEdge, float InCost, float InEstimatedCost);
+	SNodeRecord(int InNode, const CDirectedWeightedEdge* InEdge, float InCost, float InEstimatedCost);
 
 	int Node;
 
-	CDirectedWeightedEdge* IncomingEdge;
+	const CDirectedWeightedEdge* IncomingEdge;
 
 	float CostSoFar;
 	float EstimatedTotalCost;
@@ -28,5 +28,5 @@ public:
 	CPathfinding();
 	~CPathfinding();
 
-	bool FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::vector<CDirectedWeightedEdge*>& OutPath) const;
+	bool FindPath(int StartNode, int GoalNode, const CDirectedWeightedGraph* const Graph, const CHeuristic* const Heuristic, std::vector<const CDirectedWeightedEdge*>& OutPath) const;
 };

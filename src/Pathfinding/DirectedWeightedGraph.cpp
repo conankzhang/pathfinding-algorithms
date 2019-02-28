@@ -10,8 +10,13 @@ CDirectedWeightedGraph::~CDirectedWeightedGraph()
 {
 }
 
-bool CDirectedWeightedGraph::GetOutgoingEdges(int InNode, std::vector<CDirectedWeightedEdge*>& OutOutgoingEdges) const
+void CDirectedWeightedGraph::GetOutgoingEdges(int InNode, std::vector<const CDirectedWeightedEdge*>& OutOutgoingEdges) const
 {
-	// #TODO
-	return false;
+	for (const CDirectedWeightedEdge Edge : Edges)
+	{
+		if (Edge.GetSource() == InNode)
+		{
+			OutOutgoingEdges.push_back(&Edge);
+		}
+	}
 }
