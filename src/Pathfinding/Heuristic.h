@@ -1,13 +1,14 @@
 #pragma once
 
-#include <map>
-
 class CDivisionScheme;
 
 //=======================================================================================================================
 class CHeuristic
 {
 public:
+	CHeuristic(CDivisionScheme* InDivisionScheme);
+	virtual ~CHeuristic();
+
 	virtual float GetEstimate(int CurrentNode, int GoalNode) const { return 0; }
 
 protected:
@@ -18,25 +19,26 @@ protected:
 class CZeroEstimate : public CHeuristic
 {
 public:
+	CZeroEstimate(CDivisionScheme* InDivisionScheme);
+	~CZeroEstimate();
 	virtual float GetEstimate(int CurrentNode, int GoalNode) const override;
 };
 
 //=======================================================================================================================
-class CPalletMapping : public CHeuristic
+class CRandomEstimate : public CHeuristic
 {
 public:
-	CPalletMapping();
-	~CPalletMapping();
+	CRandomEstimate(CDivisionScheme* InDivisionScheme);
+	~CRandomEstimate();
 
 	virtual float GetEstimate(int CurrentNode, int GoalNode) const override;
-
-private:
-	std::map<int, float> NodeMapping;
 };
 
 //=======================================================================================================================
 class CEuclideanDistance : public CHeuristic
 {
 public:
+	CEuclideanDistance(CDivisionScheme* InDivisionScheme);
+	~CEuclideanDistance();
 	virtual float GetEstimate(int CurrentNode, int GoalNode) const override;
 };
