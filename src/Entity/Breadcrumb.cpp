@@ -6,8 +6,8 @@
 CBreadcrumb::CBreadcrumb(const ofVec2f& InPosition) :
 	Position(InPosition),
 	Color(ofColor::black),
-	LifeSpan(3),
-	OriginalLifeSpan(3),
+	LifeSpan(15),
+	OriginalLifeSpan(15),
 	Size(3),
 	OriginalSize(3),
 	IsAlive(true)
