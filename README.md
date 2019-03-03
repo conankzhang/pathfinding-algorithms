@@ -25,7 +25,6 @@ To give it a try, place the contents of this repository under your myApps direct
 
 3. main.cpp
    * A file for the entry point into the program
-   * 
 4. ofApp.h/.cpp
    * A class that handles updating, drawing, and handling user input
 
